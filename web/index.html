@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>项目建议书 · 编制工作台</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/"><span class="brand-mark">项</span><span>项目建议书<small>PROPOSAL STUDIO</small></span></a>
+  <div class="workspace-label">编制工作台 <span>MVP</span></div>
+  <button class="side-item active" id="workspaceBtn"><span>▦</span> 第四章建设方案</button>
+  <div class="nav-label">建设模块 <span id="moduleCount">12</span></div>
+  <nav id="moduleNav" aria-label="建设模块导航"></nav>
+  <div class="sidebar-foot"><i></i> 本地工作空间<small>文件保存在本机 · 材料可追溯</small></div>
+</aside>
+<div class="shell">
+  <header><div>项目编制 <span>/</span> 第四章</div><div class="header-right"><span class="local-badge">LOCAL</span><button id="settingsBtn" class="text-button">⚙ 模型设置</button></div></header>
+  <main>
+    <div class="page-top"><div><div class="eyebrow">从建设需求，到项目建议书</div><h1>把建设方案，写进项目。</h1><p>选择建设内容与参考方案，生成第四章初稿，并导出 Word 文档。</p></div><div class="chapter-stamp"><b>04</b><span>项目建设内容<br>与设计方案</span></div></div>
+    <div class="steps"><span class="current"><b>1</b> 配置项目</span><i></i><span><b>2</b> 选择建设内容</span><i></i><span><b>3</b> 生成与导出</span></div>
+    <section class="card project-card"><div class="card-heading"><h2>项目基本信息</h2><span>未填写的信息将保留待补充标记</span></div>
+      <div class="form-grid"><label class="wide">项目名称<input id="projectName" maxlength="120" value="医疗卫生强基工程项目" placeholder="请输入项目名称"></label><label>项目地区<input id="region" maxlength="120" placeholder="例如：××县"></label><label>建设单位<input id="owner" maxlength="120" placeholder="例如：××县卫生健康局"></label></div>
+      <details class="facts"><summary>补充已确认的项目条件 <span>选填</span></summary><textarea id="facts" maxlength="4000" rows="3" placeholder="填写已确认的建设规模、现有设施、周期或预算等。未确认的信息请留空。"></textarea></details>
+    </section>
+    <div class="content-grid"><section class="selection-panel">
+      <div class="section-heading"><div><h2>选择建设内容</h2><p>沿用原第四章结构 · 方案候选可后续调整</p></div><button class="text-button" id="clearBtn">清空选择</button></div>
+      <div class="search-wrap"><span>⌕</span><input id="search" placeholder="搜索模块或子节名称" aria-label="搜索建设内容"></div>
+      <div id="modules" class="modules"></div>
+    </section>
+    <aside class="summary-column"><div class="card summary-card"><div class="card-heading"><h2>本次编制</h2><span class="draft-label">草稿</span></div><div class="selected-count"><strong id="selectedCount">0</strong><span>个建设子节</span></div><div id="selectedList" class="selected-list"><p>从左侧选择本次建设内容</p></div><div class="summary-divider"></div>
+      <label class="mode-label">生成方式<select id="mode"><option value="demo">演示模式 · 无需密钥</option><option value="deepseek">DeepSeek · 正式生成</option></select></label>
+      <p class="mode-note" id="modeNote">仅验证流程，使用占位示例，不调用模型、不融合供应商方案。</p>
+      <div class="rules"><span>✓ 保留原章节编号与子标题</span><span>✓ 正式正文不出现供应商品牌</span><span>✓ 未确认参数保留待补充标记</span></div>
+      <button id="generateBtn" class="primary" disabled>开始生成 <span>→</span></button><p class="small-note">只输出已选子节，原编号可能不连续</p>
+    </div><div class="source-note"><span>▤</span><div><b>来自您提供的真实材料</b><p id="sourceStats">正在加载材料…</p><p>“审方中心”单独标识为参考方案。</p></div></div></aside></div>
+    <section id="resultPanel" class="card result-panel" hidden><div class="card-heading"><div><h2 id="resultTitle">正在编制</h2><p id="progressText" role="status" aria-live="polite"></p></div><a id="downloadBtn" class="primary download" hidden>下载 Word ↓</a></div><progress id="progress" max="100" value="0"></progress><div id="errorBox" class="error" role="alert" hidden></div><div id="resultMeta" class="result-meta"></div><article id="preview" class="paper"></article></section>
+    <footer>项目建议书 Agent <span>·</span> MVP 1.0 <span>·</span> 建议书初稿需结合项目实际复核</footer>
+  </main>
+</div>
+<dialog id="settings"><form method="dialog"><div class="dialog-heading"><h2>DeepSeek 模型设置</h2><button aria-label="关闭设置" class="close-button">×</button></div><p>正式生成时，后端将所选子节及方案文字发送至 DeepSeek。</p><label>API 密钥<input id="apiKey" type="password" autocomplete="off" placeholder="填写密钥，或使用服务端环境变量"></label><small>密钥仅随生成请求使用，不写入磁盘或浏览器存储。</small><label>模型名称<input id="model" value="deepseek-flash" maxlength="80"></label><p class="small-note">默认接口：api.deepseek.com。模型名称可按账户可用模型调整。</p><button class="primary">完成设置</button></form></dialog>
+<div id="toast" role="status" hidden></div>
+</body></html>

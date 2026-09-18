@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+outputs/
+qa/
+data/reference.docx
+data/catalog.json
+材料阅读核对_20260914/
